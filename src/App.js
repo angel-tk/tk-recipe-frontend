@@ -5,6 +5,7 @@ import About from "./views/General/About/About";
 import RecipeAdd from "./views/Recipes/RecipeAdd/RecipeAdd";
 import RecipesList from "./views/Recipes/RecipeList/RecipeList";
 import RecipeItem from "./views/Recipes/RecipeItem/RecipeItem";
+import RecipeEdit from "./views/Recipes/RecipeEdit/RecipeEdit";
 
 function App() {
   return (
@@ -15,13 +16,19 @@ function App() {
         <Route exact path="/">
           <RecipesList />
         </Route>
-        <Route path="/new-recipe/">
+        <Route exact path="/recipes/">
+          <RecipesList />
+        </Route>
+        <Route exact path="/new-recipe/">
           <RecipeAdd />
         </Route>
-        <Route path="/recipes/:id/">
+        <Route exact path="/recipes/:id/">
           <RecipeItem />
         </Route>
-        <Route path="/about/">
+        <Route exact path="/recipes/:id/edit/">
+          <RecipeEdit />
+        </Route>
+        <Route exact path="/about/">
           <About />
         </Route>
       </Switch>

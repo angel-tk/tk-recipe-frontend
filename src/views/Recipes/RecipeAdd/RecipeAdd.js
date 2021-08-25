@@ -1,6 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { Window } from "../../../components/ui/";
-import { AddRecipeForm } from "../../../components/layout";
+import { Form } from "../../../components/layout";
 
 const RecipeAdd = () => {
   const history = useHistory();
@@ -14,13 +14,13 @@ const RecipeAdd = () => {
         "Content-type": "application/json"
       }
     }).then(() => {
-      history.replace("/");
+      history.push("/");
     });
   }
 
   return (
     <Window title="Add new recipe">
-      <AddRecipeForm onAddRecipeData={addRecipeHandler} />
+      <Form onAddRecipeData={addRecipeHandler} />
     </Window>
   );
 };

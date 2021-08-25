@@ -7,11 +7,6 @@ const Recipe = props => {
     <RecipeWrapper>
       <h2>{props.name}</h2>
       <p>{props.description}</p>
-      {/* <ul>
-        {props.ingredients.map(ingredient => (
-          <li>{ingredient.name}</li>
-        ))}
-      </ul> */}
       <Link to={`/recipes/${props.id}/`}>
         <Button>View recipe</Button>
       </Link>

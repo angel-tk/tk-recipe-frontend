@@ -1,6 +1,6 @@
 import NavBar from "./NavBar/NavBar";
 import AllRecipes from "./AllRecipes/AllRecipes";
 import Recipe from "./Recipe/Recipe";
-import AddRecipeForm from "./AddRecipeForm/AddRecipeForm";
+import Form from "./Form/Form";
 
-export { NavBar, AllRecipes, Recipe, AddRecipeForm };
+export { NavBar, AllRecipes, Recipe, Form };

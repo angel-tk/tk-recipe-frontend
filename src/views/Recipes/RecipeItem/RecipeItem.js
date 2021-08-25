@@ -32,6 +32,10 @@ const RecipesList = () => {
     console.log(recipeId);
   };
 
+  const handleEdit = recipeId => {
+    history.push(`/recipes/${recipeId}/edit/`);
+  };
+
   return isLoading ? (
     <Window title="Recipe details">Loading...</Window>
   ) : (
@@ -39,8 +43,16 @@ const RecipesList = () => {
       <h2>{loadedRecipe.name}</h2>
       <p>{loadedRecipe.description}</p>
       <ul>{loadedRecipe.ingredients != null && loadedRecipe.ingredients.length > 0 ? loadedRecipe.ingredients.map(ingredient => <li key={ingredient.name.trim().toLowerCase()}>{ingredient.name}</li>) : "There seems to be something wrong with our data..."}</ul>
-      <Button>Edit recipe</Button>
-      <Button onClick={() => handleDelete(loadedRecipe.id)}>Delete recipe</Button>
+      <Button onClick={() => handleEdit(loadedRecipe.id)}>Edit recipe</Button>
+      <Button
+        onClick={() => {
+          if (window.confirm("Delete recipe? This action is irreversible!")) {
+            handleDelete(loadedRecipe.id);
+          }
+        }}
+      >
+        Delete recipe
+      </Button>
     </Window>
   );
 };

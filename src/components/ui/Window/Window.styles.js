@@ -86,6 +86,6 @@ export const WindowContent = styled.div`
   margin: 1px 4px 4px 4px;
   border: 1px solid #111;
   background-color: #ddd;
-  padding: 9px;
+  padding: 9px 9px 9px;
   box-shadow: -1px -1px 0px 0px #999, 1px 1px 0px 0px #fff, inset 1px 1px 0px 0px #fff, inset -1px -1px 0px 0px #999;
 `;
