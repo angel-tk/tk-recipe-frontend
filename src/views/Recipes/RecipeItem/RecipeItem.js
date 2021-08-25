@@ -41,7 +41,9 @@ const RecipesList = () => {
   ) : (
     <Window title="Recipe details">
       <h2>{loadedRecipe.name}</h2>
+      <p>Description:</p>
       <p>{loadedRecipe.description}</p>
+      <p>Ingredient list:</p>
       <ul>{loadedRecipe.ingredients != null && loadedRecipe.ingredients.length > 0 ? loadedRecipe.ingredients.map(ingredient => <li key={ingredient.name.trim().toLowerCase()}>{ingredient.name}</li>) : "There seems to be something wrong with our data..."}</ul>
       <Button onClick={() => handleEdit(loadedRecipe.id)}>Edit recipe</Button>
       <Button

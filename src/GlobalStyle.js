@@ -23,10 +23,6 @@ const GlobalStyle = createGlobalStyle`
     src: url(${ChicagoFont}) format("truetype");
   }
 
-  html,
-  body {
-    user-select: none;
-  }
   body {
     background-image: url(${ImageAssets.BackgroundImage});
     background-repeat: repeat;
