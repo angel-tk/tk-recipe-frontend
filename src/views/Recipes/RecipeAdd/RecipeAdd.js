@@ -1,19 +1,13 @@
 import { useHistory } from "react-router-dom";
 import { Window } from "../../../components/ui/";
 import { Form } from "../../../components/layout";
+import { addRecipe } from "../../../utils/api/requests";
 
 const RecipeAdd = () => {
   const history = useHistory();
 
   function addRecipeHandler(newRecipeData) {
-    console.log(newRecipeData);
-    fetch("http://localhost:8000/recipes/", {
-      method: "POST",
-      body: JSON.stringify(newRecipeData),
-      headers: {
-        "Content-type": "application/json"
-      }
-    }).then(() => {
+    addRecipe(newRecipeData).then(() => {
       history.push("/");
     });
   }

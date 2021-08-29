@@ -1,22 +1,24 @@
 import { useState, useLayoutEffect } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Window, Button } from "../../../components/ui";
 import { AllRecipes } from "../../../components/layout";
+import { getRecipes } from "../../../utils/api/requests";
 
 const RecipesList = () => {
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(true);
   const [loadedRecipes, setLoadedRecipes] = useState([]);
 
   useLayoutEffect(() => {
-    fetch("http://localhost:8000/recipes/")
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        setIsLoading(false);
-        setLoadedRecipes(data);
-      });
+    getRecipes().then(data => {
+      setIsLoading(false);
+      setLoadedRecipes(data);
+    });
   }, []);
+
+  function handleClick(id) {
+    history.push("/new-recipe/");
+  }
 
   return isLoading ? (
     <Window title="Recipe list">Loading...</Window>
@@ -25,9 +27,7 @@ const RecipesList = () => {
       {loadedRecipes.length <= 0 ? (
         <>
           <p>Sorry, it seems like there are no recipes yet :(</p>
-          <Link to={"/new-recipe/"}>
-            <Button>Add the first recipe!</Button>
-          </Link>
+          <Button onClick={() => handleClick}>Add the first recipe!</Button>
         </>
       ) : (
         <AllRecipes recipes={loadedRecipes} />

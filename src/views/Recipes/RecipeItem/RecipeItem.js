@@ -1,6 +1,7 @@
 import { useState, useLayoutEffect } from "react";
 import { Window, Button } from "../../../components/ui";
 import { useParams, useHistory } from "react-router-dom";
+import { getRecipe, deleteRecipe } from "../../../utils/api/requests";
 
 const RecipesList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,27 +10,16 @@ const RecipesList = () => {
   const history = useHistory();
 
   useLayoutEffect(() => {
-    fetch(`http://localhost:8000/recipes/${id}/`)
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        setIsLoading(false);
-        setLoadedRecipe(data);
-      });
+    getRecipe(id).then(data => {
+      setIsLoading(false);
+      setLoadedRecipe(data);
+    });
   }, [id]);
 
   const handleDelete = recipeId => {
-    fetch(`http://localhost:8000/recipes/${recipeId}/`, {
-      method: "DELETE"
-    })
-      .then(() => {
-        history.replace("/");
-      })
-      .catch(err => {
-        console.error(err);
-      });
-    console.log(recipeId);
+    deleteRecipe(recipeId).then(() => {
+      history.replace("/");
+    });
   };
 
   const handleEdit = recipeId => {
@@ -44,7 +34,7 @@ const RecipesList = () => {
       <p>Description:</p>
       <p>{loadedRecipe.description}</p>
       <p>Ingredient list:</p>
-      <ul>{loadedRecipe.ingredients != null && loadedRecipe.ingredients.length > 0 ? loadedRecipe.ingredients.map(ingredient => <li key={ingredient.name.trim().toLowerCase()}>{ingredient.name}</li>) : "There seems to be something wrong with our data..."}</ul>
+      <ul>{loadedRecipe.ingredients != null && loadedRecipe.ingredients.length > 0 ? loadedRecipe.ingredients.map((ingredient, key) => <li key={`${ingredient.name.trim().toLowerCase()}-${key}`}>{ingredient.name}</li>) : "There seems to be something wrong with our data..."}</ul>
       <Button onClick={() => handleEdit(loadedRecipe.id)}>Edit recipe</Button>
       <Button
         onClick={() => {
