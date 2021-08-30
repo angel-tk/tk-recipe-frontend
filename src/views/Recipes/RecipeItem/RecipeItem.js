@@ -3,7 +3,7 @@ import { Window, Button } from "../../../components/ui";
 import { useParams, useHistory } from "react-router-dom";
 import { getRecipe, deleteRecipe } from "../../../utils/api/requests";
 
-const RecipesList = () => {
+const RecipeItem = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedRecipe, setLoadedRecipe] = useState([]);
   const { id } = useParams();
@@ -49,4 +49,4 @@ const RecipesList = () => {
   );
 };
 
-export default RecipesList;
+export default RecipeItem;

@@ -37,7 +37,7 @@ const AddRecipeForm = props => {
         <TextArea name="description" id="description" required placeholder="Add your description for the recipe here. And be as detailed as possible!" ref={descriptionInputRef} defaultValue={props.recipeDescription && props.recipeDescription} />
       </InputWrapper>
       <div>
-        <Button>{props.recipeId ? "Update recipe" : "Add new recipe"}</Button>
+        <Button>{props.recipeId ? "Update recipe" : "Add recipe"}</Button>
       </div>
     </form>
   );

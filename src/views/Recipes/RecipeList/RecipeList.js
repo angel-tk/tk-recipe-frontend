@@ -10,13 +10,17 @@ const RecipesList = () => {
   const [loadedRecipes, setLoadedRecipes] = useState([]);
 
   useLayoutEffect(() => {
-    getRecipes().then(data => {
-      setIsLoading(false);
-      setLoadedRecipes(data);
-    });
+    getRecipes()
+      .then(data => {
+        setIsLoading(false);
+        setLoadedRecipes(data);
+      })
+      .catch(err => {
+        console.log("Error: ", err);
+      });
   }, []);
 
-  function handleClick(id) {
+  function handleClick() {
     history.push("/new-recipe/");
   }
 
@@ -27,7 +31,7 @@ const RecipesList = () => {
       {loadedRecipes.length <= 0 ? (
         <>
           <p>Sorry, it seems like there are no recipes yet :(</p>
-          <Button onClick={() => handleClick}>Add the first recipe!</Button>
+          <Button onClick={() => handleClick()}>Add the first recipe!</Button>
         </>
       ) : (
         <AllRecipes recipes={loadedRecipes} />

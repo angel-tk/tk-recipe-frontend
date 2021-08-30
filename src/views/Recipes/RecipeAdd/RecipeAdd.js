@@ -7,9 +7,13 @@ const RecipeAdd = () => {
   const history = useHistory();
 
   function addRecipeHandler(newRecipeData) {
-    addRecipe(newRecipeData).then(() => {
-      history.push("/");
-    });
+    addRecipe(newRecipeData)
+      .then(() => {
+        history.push("/");
+      })
+      .catch(err => {
+        console.log("Error: ", err);
+      });
   }
 
   return (
